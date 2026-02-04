@@ -1,0 +1,73 @@
+import type { ExperienceData } from '../components/Experience';
+import { tags } from './tags';
+
+// Placeholder images - replace these with your actual project images
+const placeholderImages = {
+	terminalPortfolio: [
+		'/videos/shell.mp4',
+	],
+	systemMonitor: [
+		'https://via.placeholder.com/800x450/000000/00ff00?text=System+Monitor+Interface',
+		'https://via.placeholder.com/800x450/000000/00ff00?text=System+Monitor+CLI'
+	],
+	fileManager: [
+		'https://via.placeholder.com/800x450/1a1a1a/ffffff?text=CLI+File+Manager+Demo',
+		'https://via.placeholder.com/800x450/1a1a1a/ffffff?text=Vim+Keybindings+Demo'
+	],
+	cCompiler: [
+		'https://via.placeholder.com/800x450/2d2d2d/ffffff?text=C+Compiler+Output',
+		'https://via.placeholder.com/800x450/2d2d2d/ffffff?text=AST+Visualization'
+	],
+	gameEngine: [
+		'https://via.placeholder.com/800x450/000000/ff0000?text=Game+Engine+Demo',
+		'https://via.placeholder.com/800x450/000000/ff0000?text=3D+Graphics+Output'
+	]
+};
+
+export const projectsData: ExperienceData[] = [
+	{
+		title: "FERRUM",
+		content: "FERRUM is a feature-rich shell written in C for Linux, designed for developers and power users. Built from scratch with productivity enhancements like fzf and ripgrep built in. FERRUM also has a strong emphasis on git and github integration, and features a tui for git related worklows.",
+		time: "Apr 28 - Present",
+		state: "In Progress",
+		tags: [tags.c, tags.ncurses],
+		github: "https://github.com/marcusDenslow/FERRUM",
+		images: placeholderImages.terminalPortfolio
+	},
+	{
+		title: "NBodyProblem-solver",
+		content: "NBodyProblem-solver is a python project written for a school project which simulates gravitational forces in an n-body system of planets",
+		time: "Oct 2024 - Nov 2024",
+		state: "Completed",
+		tags: [tags.c, tags.linux, tags.systems],
+		github: "https://github.com/yourusername/system-monitor",
+		images: placeholderImages.systemMonitor
+	},
+	{
+		title: "CLI File Manager",
+		content: "Efficient command-line file manager with vim-like keybindings, built using ncurses. Supports file operations, directory navigation, and customizable shortcuts for power users.",
+		time: "Aug 2024 - Oct 2024",
+		state: "Completed",
+		tags: [tags.c, tags.ncurses, tags.terminal],
+		github: "https://github.com/yourusername/cli-file-manager",
+		images: placeholderImages.fileManager
+	},
+	{
+		title: "C Compiler",
+		content: "Simple C compiler implementation that can parse and compile basic C programs. Features lexical analysis, parsing, and code generation for a subset of the C language.",
+		time: "Jun 2024 - Aug 2024",
+		state: "Completed",
+		tags: [tags.c, tags.systems, tags.assembly],
+		github: "https://github.com/yourusername/c-compiler",
+		images: placeholderImages.cCompiler
+	},
+	{
+		title: "3D Game Engine",
+		content: "Basic 3D game engine written in C++ with OpenGL. Includes scene management, basic physics, shader support, and model loading. A great learning project for graphics programming.",
+		time: "Mar 2024 - Jun 2024",
+		state: "Backlog",
+		tags: [tags.cpp, tags.systems],
+		github: "https://github.com/yourusername/game-engine",
+		images: placeholderImages.gameEngine
+	}
+];

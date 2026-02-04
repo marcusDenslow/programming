@@ -1,0 +1,18 @@
+[dependencies]
+crossterm.workspace = true
+
+[features]
+default = ["gui"]
+gui = []
+cli = []
+only-gui = ["gui"]
+only-cli = ["cli"]
+
+[package]
+name = "nyra-utils"
+version = "1.2.0"
+description = "Nyra's simple utility functions"
+license = "Unlicense"
+readme = "README.adoc"
+keywords = ["discord", "discord-bot", "utility"]
+edition = "2024"

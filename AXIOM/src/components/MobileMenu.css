@@ -1,0 +1,446 @@
+/* Mobile Menu Button - Hidden by default, shown on small screens */
+.mobile-menu-button {
+	display: none;
+	position: fixed;
+	top: clamp(1.5rem, 3vw, 2rem);
+	right: clamp(1.5rem, 3vw, 2rem);
+	width: clamp(44px, 6vw, 48px);
+	height: clamp(44px, 6vw, 48px);
+	background: none;
+	border: none;
+	cursor: pointer;
+	z-index: 10003;
+	padding: 0;
+	transition: transform 0.2s ease, top 0.3s ease, right 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+/* Entrance animation when switching to mobile */
+.mobile-menu-button.mobile-menu-entering {
+	animation: mobileMenuSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+	animation-delay: 0.9s;
+}
+
+@keyframes mobileMenuSlideIn {
+	0% {
+		transform: translateX(50px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.mobile-menu-button.menu-open .hamburger-line {
+	background-color: var(--bg-color) !important;
+}
+
+/* Invert button color when first menu item is hovered */
+.menu-item:first-child.hovered ~ * .mobile-menu-button .hamburger-line,
+body:has(.menu-item:first-child.hovered) .mobile-menu-button.menu-open .hamburger-line {
+	background-color: var(--text-color) !important;
+	transition: all 0.3s ease, background-color 0.5s ease 0.15s !important;
+}
+
+.mobile-menu-button:hover {
+	transform: scale(1.05);
+}
+
+.mobile-menu-button:active {
+	transform: scale(0.95);
+}
+
+/* Hamburger Lines */
+.hamburger-line {
+	display: block;
+	position: absolute;
+	left: 50%;
+	width: 28px;
+	height: 2px;
+	background-color: var(--text-color);
+	border-radius: 0;
+	transition: all 0.3s ease, background-color 0.5s ease 0s;
+	transform-origin: center;
+	z-index: 10003;
+}
+
+.hamburger-line-1 {
+	top: 14px;
+	transform: translateX(-50%);
+}
+
+.hamburger-line-2 {
+	top: 22.5px;
+	transform: translateX(-50%);
+}
+
+.hamburger-line-3 {
+	top: 31px;
+	transform: translateX(-50%);
+}
+
+/* Open state - Transform to X */
+.mobile-menu-button.open .hamburger-line-1 {
+	top: 22.5px;
+	transform: translateX(-50%) rotate(45deg);
+}
+
+.mobile-menu-button.open .hamburger-line-2 {
+	opacity: 0;
+	transform: translateX(-50%) scale(0);
+}
+
+.mobile-menu-button.open .hamburger-line-3 {
+	top: 22.5px;
+	transform: translateX(-50%) rotate(-45deg);
+}
+
+/* Mobile Menu Overlay - Full Screen Brutalist - Inverted theme */
+.mobile-menu-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh; /* Fallback for older browsers */
+	height: 100dvh; /* Use dynamic viewport height to account for browser UI */
+	background: var(--text-color);
+	z-index: 10000;
+	animation: overlaySlideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	transition: background 0.5s ease;
+}
+
+@keyframes overlaySlideDown {
+	0% {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.mobile-menu-overlay.closing {
+	animation: overlaySlideUp 0.35s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes overlaySlideUp {
+	0% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+}
+
+/* Menu Grid - Equal Height Divisions */
+.menu-grid {
+	width: 100%;
+	height: 100vh; /* Fallback for older browsers */
+	height: 100dvh; /* Use dynamic viewport height to account for browser UI */
+	display: flex;
+	flex-direction: column;
+}
+
+/* Menu Item - Sharp Brutalist Block */
+.menu-item {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 2rem;
+	border-bottom: 4px solid var(--bg-color);
+	cursor: pointer;
+	transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+/* Staggered multi-directional entrance animations */
+.menu-item:nth-child(1) {
+	animation: menuItemSlideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.menu-item:nth-child(2) {
+	animation: menuItemSlideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+.menu-item:nth-child(3) {
+	animation: menuItemSlideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+/* Cancel entrance animations when item is clicked to allow expansion */
+.menu-item.clicked {
+	animation: none !important;
+	overflow: visible !important;
+}
+
+@keyframes menuItemSlideInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes menuItemSlideInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Staggered exit animations - reverse directions */
+.mobile-menu-overlay.closing .menu-item:nth-child(1) {
+	animation: menuItemSlideOutRight 0.25s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.mobile-menu-overlay.closing .menu-item:nth-child(2) {
+	animation: menuItemSlideOutLeft 0.25s cubic-bezier(0.65, 0, 0.35, 1) 0.05s forwards;
+}
+
+.mobile-menu-overlay.closing .menu-item:nth-child(3) {
+	animation: menuItemSlideOutRight 0.25s cubic-bezier(0.65, 0, 0.35, 1) 0.1s forwards;
+}
+
+@keyframes menuItemSlideOutLeft {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+}
+
+@keyframes menuItemSlideOutRight {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(20px);
+	}
+}
+
+.menu-item:last-child {
+	border-bottom: none;
+}
+
+.menu-item::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 100%;
+	background: var(--bg-color);
+	transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease, left 0s, right 0s;
+	z-index: 0;
+}
+
+/* Touch devices get faster preview for better feedback */
+@media (hover: none) and (pointer: coarse) {
+	.menu-item::before {
+		transition: width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	}
+}
+
+.menu-item.hovered::before {
+	width: 100%;
+}
+
+.menu-item.hovered .item-number,
+.menu-item.hovered .item-label,
+.menu-item.hovered .item-arrow {
+	color: var(--text-color);
+	transform: translateX(10px);
+}
+
+
+/* Item Number */
+.item-number {
+	font-family: 'Inter', sans-serif;
+	font-size: 2.5rem;
+	font-weight: 900;
+	color: var(--bg-color);
+	position: relative;
+	z-index: 1;
+	transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	letter-spacing: 0.05em;
+	opacity: 0.3;
+	white-space: nowrap;
+}
+
+.menu-item.hovered .item-number {
+	opacity: 1;
+}
+
+/* Item Label */
+.item-label {
+	font-family: 'Inter', sans-serif;
+	font-size: 2rem;
+	font-weight: 900;
+	color: var(--bg-color);
+	text-transform: uppercase;
+	letter-spacing: -0.03em;
+	position: relative;
+	z-index: 1;
+	transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	line-height: 1;
+	white-space: nowrap;
+}
+
+/* Item Arrow */
+.item-arrow {
+	font-family: 'Inter', sans-serif;
+	font-size: 2rem;
+	font-weight: 900;
+	color: var(--bg-color);
+	position: relative;
+	z-index: 1;
+	transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	margin-right: 2rem;
+	white-space: nowrap;
+}
+
+/* Clicked Animation - Color expands to fill entire screen from item position */
+/* Note: Middle item (index 1) animation is handled by JavaScript with three blocks */
+/* Only first and last items use CSS ::after animation */
+.menu-item:nth-child(1).clicked::after,
+.menu-item:nth-child(3).clicked::after {
+	content: '';
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background: var(--bg-color);
+	z-index: 10004;
+}
+
+/* First item (index 0) - expand down */
+.menu-item:nth-child(1).clicked::after {
+	animation: expandDown 1.2s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+/* Last item (index 2) - expand up */
+.menu-item:nth-child(3).clicked::after {
+	animation: expandUp 1.2s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+/* Hide arrows when any item is clicked */
+.menu-item.clicked .item-arrow {
+	opacity: 0;
+}
+
+@keyframes expandDown {
+	from {
+		clip-path: inset(0 0 var(--item-bottom, 620px) 0);
+	}
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+@keyframes expandBoth {
+	from {
+		clip-path: inset(var(--item-top, 310px) 0 var(--item-bottom, 310px) 0);
+	}
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+@keyframes expandUp {
+	from {
+		clip-path: inset(var(--item-top, 620px) 0 0 0);
+	}
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+/* Animations handled by Web Animations API in TypeScript */
+
+/* Show on mobile screens */
+@media (max-width: 768px) {
+	.mobile-menu-button {
+		display: block;
+	}
+}
+
+/* Landscape mobile phones */
+@media (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+	.menu-grid {
+		flex-direction: row;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+
+	.menu-item {
+		min-width: 33.33%;
+		border-right: 4px solid var(--bg-color);
+		border-bottom: none;
+		flex-direction: column;
+		justify-content: center;
+		padding: 1rem;
+	}
+
+	.menu-item:last-child {
+		border-right: none;
+	}
+
+	.item-number {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.item-label {
+		font-size: 1rem;
+		text-align: center;
+	}
+
+	.item-arrow {
+		margin-top: 0.5rem;
+		margin-right: 0;
+	}
+}
+
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+
+	.file-drawer {
+		animation: none;
+	}
+}
+
+/* Enhanced focus states for keyboard navigation */
+.mobile-menu-button:focus-visible {
+	outline: 2px solid var(--text-color);
+	outline-offset: 4px;
+}
+
+.file-drawer:focus-visible {
+	outline: 2px solid var(--text-color);
+	outline-offset: -4px;
+}

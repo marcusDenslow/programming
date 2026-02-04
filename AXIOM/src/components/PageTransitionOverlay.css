@@ -1,0 +1,154 @@
+.page-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-transition-overlay.transitioning-in {
+  pointer-events: all;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.transition-terminal {
+  background-color: var(--bg-color);
+  border: 2px solid var(--text-color);
+  border-radius: 0;
+  width: clamp(300px, 90vw, 500px);
+  opacity: 0;
+  transform: scale(0.85) translateY(40px);
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
+}
+
+.transitioning-in .transition-terminal {
+  animation: terminalSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.transitioning-out .transition-terminal {
+  animation: terminalSlideOut 0.4s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.terminal-header {
+  padding: 0.75rem 1rem;
+  background-color: var(--text-color);
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--text-color);
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  background-color: var(--bg-color);
+  border-radius: 50%;
+}
+
+.terminal-content {
+  padding: 1.5rem 1rem;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.terminal-log {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.log-timestamp {
+  color: var(--text-ghost);
+  white-space: nowrap;
+}
+
+.log-level {
+  font-weight: 600;
+  padding: 0 0.5rem;
+  white-space: nowrap;
+}
+
+.log-level.info {
+  color: var(--text-secondary);
+}
+
+.log-level.request {
+  color: var(--text-color);
+}
+
+.log-level.success {
+  color: var(--text-color);
+}
+
+.log-message {
+  color: var(--text-secondary);
+}
+
+.log-url {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+/* Staggered fade in animations */
+.fade-in-1 {
+  animation: logFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+.fade-in-2 {
+  animation: logFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.fade-in-3 {
+  animation: logFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+}
+
+@keyframes terminalSlideIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(40px);
+  }
+  60% {
+    transform: scale(1.02) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes terminalSlideOut {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+}
+
+@keyframes logFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+

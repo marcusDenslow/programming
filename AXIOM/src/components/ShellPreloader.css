@@ -1,0 +1,87 @@
+.shell-preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--bg-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10000;
+	opacity: 1;
+	transition: opacity 0.8s ease-out, background-color 0.5s ease;
+}
+
+.shell-preloader.exiting {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.preloader-content {
+	width: 100%;
+	max-width: 800px;
+	padding: 2rem;
+}
+
+.boot-sequence {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.boot-line {
+	font-family: 'Inter', sans-serif;
+	font-size: 1.2rem;
+	font-weight: 400;
+	color: var(--text-color);
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	opacity: 0;
+	transform: translateY(10px);
+	transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+	            transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+	            color 0.5s ease;
+}
+
+.boot-line.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.bracket {
+	color: var(--text-secondary);
+	transition: color 0.5s ease;
+}
+
+.status {
+	min-width: 2ch;
+	font-weight: 600;
+	text-align: center;
+	transition: color 0.2s ease;
+}
+
+.status.loading {
+	color: var(--text-secondary);
+}
+
+.status.ok {
+	color: var(--text-color);
+}
+
+.stage-text {
+	color: var(--text-secondary);
+	transition: color 0.5s ease;
+}
+
+.boot-line.visible .stage-text {
+	color: var(--text-color);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+	.boot-line {
+		font-size: 1rem;
+	}
+}

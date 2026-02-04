@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/bolla/programming/c++/sdl/build",
+  "command": "/usr/bin/c++  -isystem /usr/include/SDL2 -std=gnu++20 -o CMakeFiles/main.dir/main.cpp.o -c /home/bolla/programming/c++/sdl/main.cpp",
+  "file": "/home/bolla/programming/c++/sdl/main.cpp",
+  "output": "CMakeFiles/main.dir/main.cpp.o"
+}
+]

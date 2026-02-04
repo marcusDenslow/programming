@@ -1,0 +1,36 @@
+= Nyra's Dependencies
+
+There is two sections, one for Nix, and one for General systems. If you are able to use Nix, and dont have grudge about it
+I would highly recommend Nix for this project.
+
+== Nix Dev Environment
+
+The Nix way is really helpful, as all you have to do is
+
+[source, shell]
+----
+nix develop
+----
+
+and then you will have everything.
+
+== Other systems
+
+The list of prerequisites is:
+
+. link:https://rust-lang.org/tools/install/[The Rust Toolchain]
+. link:https://cmake.org/download/[CMake]
+. link:https://releases.llvm.org/download.html[CLang from the LLVM project.]
+
+=== macOS-only dependencies
+
+Since the window framework is the same as Zed-editor (GPUI) you will need Xcode with
+MetalPlatform. The Metal platform is **NOT** preinstalled with Xcode 26. Use the app-store to
+download Xcode then verify and make sure that the developer target is switched to the Xcode
+toolchain by doing:
+
+[source, shell]
+----
+sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+sudo xcodebuild -license accept
+----

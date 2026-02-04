@@ -1,0 +1,752 @@
+/* Layout */
+.homepage-layout {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  display: flex;
+  overflow-x: hidden;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 430px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-width: min(1200px, 100vw - 430px - 4rem); /* Adaptive max-width */
+  padding: 0 clamp(1.5rem, 3vw, 2rem);
+  transition: margin-left 0.3s ease, padding 0.3s ease;
+}
+
+/* Content Sections */
+.content-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.section-content {
+  width: 100%;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 2.5vw + 0.5rem, 1.875rem); /* Fluid 24px-30px */
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0;
+  padding: clamp(3rem, 5vw, 4rem) 0 0 clamp(1.5rem, 3vw, 2rem);
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
+  transition: color 0.5s ease, font-size 0.3s ease, padding 0.3s ease;
+  text-align: left;
+  width: 100%;
+}
+
+/* About Section */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.hero-text {
+  text-align: center;
+}
+
+.hero-text h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  color: var(--text-color);
+  transition: color 0.5s ease;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  transition: color 0.5s ease;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.skill-card {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  transition: border-color 0.5s ease, background-color 0.5s ease;
+}
+
+.skill-card:hover {
+  border-color: var(--text-ghost);
+}
+
+.skill-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  transition: color 0.5s ease;
+}
+
+.skill-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: color 0.5s ease;
+}
+
+/* Projects Section */
+.projects-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.project-card {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  padding: 2.5rem;
+  transition: border-color 0.5s ease, background-color 0.5s ease;
+}
+
+.project-card:hover {
+  border-color: var(--text-ghost);
+}
+
+.project-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  transition: color 0.5s ease;
+}
+
+.project-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  transition: color 0.5s ease;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Tech tag styling removed - now using Tailwind classes in Experience.tsx */
+
+/* Contact Section */
+.contact-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.contact-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 5vw, 4rem);
+  align-items: center;
+  transition: gap 0.3s ease;
+}
+
+/* Medium screens */
+@media (max-width: 900px) {
+  .contact-bottom {
+    gap: clamp(2.5rem, 4vw, 3rem);
+  }
+}
+
+.contact-info h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem); /* Fluid 24px-32px */
+  font-weight: 600;
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  color: var(--text-color);
+  transition: color 0.5s ease, font-size 0.3s ease;
+}
+
+.contact-info p {
+  color: var(--text-secondary);
+  font-size: clamp(0.9rem, 1.5vw, 1rem); /* Fluid 14.4px-16px */
+  line-height: 1.6;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  transition: color 0.5s ease, font-size 0.3s ease;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  transition: gap 0.3s ease;
+}
+
+.contact-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
+}
+
+.contact-link:hover {
+  color: var(--text-color);
+  border-color: var(--text-ghost);
+}
+
+.contact-method {
+  font-weight: 600;
+}
+
+.contact-detail {
+  color: var(--text-ghost);
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover .contact-detail {
+  color: var(--text-secondary);
+}
+
+/* Quote */
+.quote {
+  text-align: center;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem); /* Fluid 19.2px-24px */
+  line-height: 1.6;
+  color: var(--text-secondary);
+  font-style: italic;
+  transition: color 0.5s ease, font-size 0.3s ease;
+  position: relative;
+}
+
+.quote-mark {
+  font-size: clamp(1.5rem, 3vw, 2rem); /* Fluid 24px-32px */
+  color: var(--text-ghost);
+  font-weight: 600;
+  transition: color 0.5s ease, font-size 0.3s ease;
+}
+
+.quote-text {
+  margin: 0 0.5rem;
+}
+
+.highlight {
+  color: var(--text-color);
+  font-weight: 600;
+  transition: color 0.5s ease;
+}
+
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: clamp(320px, 35vw, 350px);
+  }
+
+  .main-content {
+    margin-left: clamp(320px, 35vw, 350px);
+    padding: 0 clamp(1.25rem, 3vw, 1.5rem);
+  }
+
+  .hero-text h2 {
+    font-size: clamp(2.5rem, 5vw, 3rem);
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(1.25rem, 3vw, 1.5rem);
+  }
+}
+
+/* Medium tablets 820px-900px */
+@media (max-width: 900px) {
+  .main-content {
+    padding: 0 clamp(1rem, 2.5vw, 1.25rem);
+  }
+
+  .skills-grid,
+  .projects-content {
+    gap: clamp(1rem, 2.5vw, 1.25rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .homepage-layout {
+    display: block;
+    position: relative;
+    scroll-behavior: smooth;
+  }
+
+  .main-content {
+    margin-left: 0;
+    margin-top: 0;
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    padding-top: 0;
+    position: relative;
+    z-index: 501; /* Above mobile hero */
+    pointer-events: none; /* Allow clicks to pass through to hero */
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .main-content.with-hero {
+    padding-top: 85vh; /* Start content closer to hero - less scrolling needed */
+  }
+
+  .content-section {
+    min-height: 100vh;
+    padding: 1rem 0;
+    overflow-x: hidden;
+    background-color: var(--bg-color);
+    pointer-events: auto; /* Re-enable clicks on actual content */
+    transition: background-color 0.5s ease;
+  }
+
+  .section-content {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .section-title {
+    padding: clamp(2rem, 4vw, 3rem) 0 0 clamp(0rem, 1vw, 0.5rem);
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+  }
+
+  .hero-text h2 {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+  }
+
+  .hero-text p {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+  }
+
+  .skills-grid {
+    gap: clamp(0.75rem, 2vw, 1rem);
+  }
+
+  .skill-card, .project-card {
+    padding: clamp(1.25rem, 3vw, 1.5rem);
+  }
+
+  .contact-bottom {
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .quote {
+    font-size: clamp(1.1rem, 2.5vw, 1.2rem);
+  }
+
+  .projects-content {
+    gap: clamp(1.5rem, 3vw, 2rem);
+  }
+}
+
+/* Page Transition Animations */
+.page-transition-in {
+  animation: pageSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother easing */
+}
+
+/* Entrance animations - staggered multi-directional like sidebar */
+.page-transition-in .section-title {
+  animation: contentSlideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Break down each project card into pieces that animate from different directions */
+.page-transition-in .experience-meta {
+  animation: contentSlideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.page-transition-in .experience-title {
+  animation: contentSlideInLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.page-transition-in .carousel-container,
+.page-transition-in .experience-description {
+  animation: contentSlideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.page-transition-in .experience-footer {
+  animation: contentSlideInLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+/* Contact page entrance animations */
+.page-transition-in .contact-content-wrapper > div:nth-child(1) {
+  animation: contentSlideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.page-transition-in .contact-content-wrapper > div:nth-child(2) {
+  animation: contentSlideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.page-transition-in .contact-bottom {
+  animation: contentSlideInBottom 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+.page-transition-out {
+  /* No base animation */
+}
+
+/* Exit animations - reverse of entrance with alternating directions */
+.page-transition-out .section-title {
+  animation: contentSlideOutRight 0.3s ease-in forwards;
+}
+
+/* Break down each project card into pieces that animate in different directions */
+.page-transition-out .experience-meta {
+  animation: contentSlideOutLeft 0.25s ease-in forwards;
+}
+
+.page-transition-out .experience-title {
+  animation: contentSlideOutRight 0.25s ease-in 0.02s forwards;
+}
+
+.page-transition-out .carousel-container,
+.page-transition-out .experience-description {
+  animation: contentSlideOutLeft 0.25s ease-in 0.04s forwards;
+}
+
+.page-transition-out .experience-footer {
+  animation: contentSlideOutRight 0.25s ease-in 0.06s forwards;
+}
+
+.page-transition-out .experience-and-projects .timeline-line {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+/* Contact page exit animations */
+.page-transition-out .contact-content-wrapper > div:nth-child(1) {
+  animation: contentSlideOutLeft 0.3s ease-in forwards;
+}
+
+.page-transition-out .contact-content-wrapper > div:nth-child(2) {
+  animation: contentSlideOutRight 0.3s ease-in 0.05s forwards;
+}
+
+.page-transition-out .contact-bottom {
+  animation: contentSlideOutTop 0.3s ease-in 0.1s forwards;
+}
+
+@keyframes pageSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}
+
+/* Content entrance animations - multi-directional */
+@keyframes contentSlideInLeft {
+  0% {
+    transform: translateX(-25px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes contentSlideInRight {
+  0% {
+    transform: translateX(25px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes contentSlideInBottom {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Content exit animations - reverse of entrance */
+@keyframes contentSlideOutLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-12px);
+    opacity: 0;
+  }
+}
+
+@keyframes contentSlideOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(12px);
+    opacity: 0;
+  }
+}
+
+@keyframes contentSlideOutTop {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-12px);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Homepage Entrance Animations */
+.homepage-entrance {
+  animation: homepageEntrance 0.8s ease-out;
+}
+
+.homepage-entrance .sidebar {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+/* Sidebar Element Animations */
+.homepage-entrance .sidebar-animate-left {
+  animation: sidebarSlideInLeft 0.5s ease-out both;
+}
+
+.homepage-entrance .sidebar-animate-right {
+  animation: sidebarSlideInRight 0.5s ease-out both;
+}
+
+.homepage-entrance .sidebar-animate-bottom {
+  animation: sidebarSlideInBottom 0.5s ease-out both;
+}
+
+.homepage-entrance .sidebar-animate-top {
+  animation: sidebarSlideInTop 0.5s ease-out both;
+}
+
+/* Staggered delays for sidebar elements */
+.homepage-entrance .sidebar-title {
+  animation-delay: 0.3s;
+}
+
+.homepage-entrance .sidebar-subtitle:first-of-type {
+  animation-delay: 0.4s;
+}
+
+.homepage-entrance .sidebar-subtitle.secondary {
+  animation-delay: 0.5s;
+}
+
+.homepage-entrance .nav-link:nth-child(1) {
+  animation-delay: 0.6s;
+}
+
+.homepage-entrance .nav-link:nth-child(2) {
+  animation-delay: 0.7s;
+}
+
+.homepage-entrance .nav-link:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.homepage-entrance .external-link {
+  animation-delay: 0.9s;
+}
+
+.homepage-entrance .main-content {
+  animation: slideInRight 0.6s ease-out 0.1s both;
+}
+
+.homepage-entrance .section-title {
+  animation: slideInTop 0.5s ease-out 0.3s both;
+}
+
+.homepage-entrance .experience-and-projects {
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.homepage-entrance .contact-content-wrapper {
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+/* Staggered Timeline Animations */
+.homepage-entrance .experience-content {
+  animation: timelineItemIn 0.4s ease-out both;
+}
+
+.homepage-entrance .experience-content:nth-child(2) { animation-delay: 0.5s; }
+.homepage-entrance .experience-content:nth-child(4) { animation-delay: 0.6s; }
+.homepage-entrance .experience-content:nth-child(6) { animation-delay: 0.7s; }
+.homepage-entrance .experience-content:nth-child(8) { animation-delay: 0.8s; }
+.homepage-entrance .experience-content:nth-child(10) { animation-delay: 0.9s; }
+.homepage-entrance .experience-content:nth-child(12) { animation-delay: 1.0s; }
+
+/* Timeline Line Animation */
+.homepage-entrance .timeline-line {
+  animation: timelineLineIn 0.6s ease-out 0.4s both;
+}
+
+/* Keyframes */
+@keyframes homepageEntrance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInTop {
+  0% {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes timelineItemIn {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes timelineLineIn {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Sidebar Element Keyframes */
+@keyframes sidebarSlideInLeft {
+  0% {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes sidebarSlideInRight {
+  0% {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes sidebarSlideInBottom {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes sidebarSlideInTop {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

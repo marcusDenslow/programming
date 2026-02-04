@@ -1,0 +1,16 @@
+= Configuring Nyra
+
+Nyra requires an `nyra.toml` file before running.
+
+Copy the example:
+
+[source,shell]
+----
+# Not for Windows
+cp nyra.example.toml ~/.config/nyra/nyra.toml
+
+# For Windows
+cp nyra.example.toml %LOCALAPPDATA%/nyra/nyra.toml
+----
+
+Then inside of the `nyra.toml` fill out your information.

@@ -1,0 +1,17 @@
+[dependencies]
+darling.workspace = true
+proc-macro2.workspace = true
+quote.workspace = true
+syn.workspace = true
+
+[lib]
+proc-macro = true
+
+[package]
+name = "poise_macros"
+version = "0.6.2"
+authors = ["kangalio <jannik.a.schaper@web.de>"]
+edition = "2024"
+description = "Internal macro implementation crate of poise"
+license = "MIT"
+repository = "https://github.com/serenity-rs/poise/"

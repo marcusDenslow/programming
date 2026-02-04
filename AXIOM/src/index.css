@@ -1,0 +1,238 @@
+/* SCROLLBAR STYLING FIRST - CRITICAL FOR NO WHITE FLASH */
+html {
+	scrollbar-width: thin !important;
+	scroll-behavior: smooth;
+}
+
+/* Dark mode scrollbar */
+html[data-theme="dark"] {
+	color-scheme: dark !important;
+	scrollbar-color: rgba(115, 115, 115, 0.25) #000000 !important;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar {
+	background: #000000 !important;
+	background-color: #000000 !important;
+	width: 0.75rem;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-track {
+	background: #000000 !important;
+	background-color: #000000 !important;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+	background: rgba(115, 115, 115, 0.25) !important;
+	background-color: rgba(115, 115, 115, 0.25) !important;
+	border-radius: 9999px;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-corner {
+	background: #000000 !important;
+	background-color: #000000 !important;
+}
+
+/* Light mode scrollbar */
+html[data-theme="light"] {
+	color-scheme: light !important;
+	scrollbar-color: #000000 #faf9f6 !important;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar {
+	background: #faf9f6 !important;
+	background-color: #faf9f6 !important;
+	width: 0.75rem;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-track {
+	background: #faf9f6 !important;
+	background-color: #faf9f6 !important;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+	background: #000000 !important;
+	background-color: #000000 !important;
+	border-radius: 9999px;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-corner {
+	background: #faf9f6 !important;
+	background-color: #faf9f6 !important;
+}
+
+:root[data-theme="dark"] {
+	--bg-color: #000000;
+	--text-color: #ffffff;
+	--text-secondary: rgba(255, 255, 255, 0.8);
+	--text-ghost: rgba(255, 255, 255, 0.3);
+	--text-error: rgba(255, 255, 255, 0.7);
+	--border-color: #333333;
+	--cursor-color: #ffffff;
+	--accent-color: #7c3aed;
+}
+
+:root[data-theme="light"] {
+	--bg-color: #faf9f6;
+	--text-color: #000000;
+	--text-secondary: rgba(0, 0, 0, 0.8);
+	--text-ghost: rgba(0, 0, 0, 0.4);
+	--text-error: rgba(0, 0, 0, 0.7);
+	--border-color: #e0e0e0;
+	--cursor-color: #000000;
+	--accent-color: #8b5cf6;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap') layer(fonts);
+
+:root {
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	line-height: 2;
+	font-weight: 800;
+
+	color-scheme: light dark;
+	color: var(--text-color);
+	background-color: var(--bg-color);
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	transition: color 0.5s ease, background-color 0.5s ease;
+}
+
+/* FORCE INTER FOR ALL TEXT */
+* {
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* Text selection styling */
+::selection {
+	background-color: var(--accent-color);
+	color: #ffffff;
+}
+
+::-moz-selection {
+	background-color: var(--accent-color);
+	color: #ffffff;
+}
+
+a {
+	font-weight: 500;
+	color: #646cff;
+	text-decoration: inherit;
+}
+
+a:hover {
+	color: #535bf2;
+}
+
+body {
+	margin: 0;
+	display: flex;
+	place-items: center;
+	min-width: 320px;
+	min-height: 100vh;
+}
+
+h1 {
+	font-size: 3.2em;
+	line-height: 1.1;
+}
+
+button {
+	border-radius: 8px;
+	border: 1px solid transparent;
+	padding: 0.6em 1.2em;
+	font-size: 1em;
+	font-weight: 500;
+	font-family: inherit;
+	background-color: #1a1a1a;
+	cursor: pointer;
+	transition: border-color 0.5s ease;
+}
+
+button:hover {
+	border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+	outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Hover states for scrollbar */
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+	background: rgba(115, 115, 115, 0.4) !important;
+	background-color: rgba(115, 115, 115, 0.4) !important;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+	background: #000000 !important;
+	background-color: #000000 !important;
+}
+
+/* Hide ALL browser UI during transitions */
+.hide-scrollbar {
+	scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
+	user-select: none !important;
+	-webkit-user-select: none !important;
+	-moz-user-select: none !important;
+	-ms-user-select: none !important;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+	display: none !important;
+	width: 0 !important;
+}
+
+.hide-scrollbar * {
+	outline: none !important;
+	-webkit-tap-highlight-color: transparent !important;
+	-webkit-touch-callout: none !important;
+	user-select: none !important;
+}
+
+/* Show scrollbar when ready */
+.show-scrollbar {
+	scrollbar-width: thin !important;
+	-ms-overflow-style: scrollbar !important;
+}
+
+.show-scrollbar::-webkit-scrollbar {
+	display: block !important;
+	width: 0.75rem !important;
+}
+
+/* Hide horizontal scrollbar completely */
+::-webkit-scrollbar:horizontal {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
+}
+
+/* Force hide horizontal overflow on all elements */
+html, body {
+	overflow-x: hidden !important;
+	max-width: 100vw !important;
+	scrollbar-color: rgba(115, 115, 115, 0.25) #000000 !important;
+}
+
+/* Already defined at top of file */
+
+/* Target the main container elements specifically */
+#root {
+	overflow-x: hidden !important;
+}
+
+.homepage-layout {
+	overflow-x: hidden !important;
+}
+
+.main-content {
+	overflow-x: hidden !important;
+}
+
+/* Timeline hover effects - removed global rule */
+

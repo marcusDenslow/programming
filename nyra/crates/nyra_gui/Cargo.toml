@@ -1,0 +1,15 @@
+[dependencies]
+gpui.workspace = true
+nyra-core.workspace = true
+nyra-utils.workspace = true
+serde.workspace = true
+tokio.workspace = true
+
+[package]
+name = "nyra-gui"
+version = "1.2.0"
+description = "Window platform for Nyra"
+license = "Unlicense"
+readme = "README.adoc"
+keywords = ["discord", "discord-bot", "utility"]
+edition = "2024"

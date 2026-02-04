@@ -1,0 +1,257 @@
+/* Mobile Hero - Only visible on mobile */
+.mobile-hero {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-color);
+  z-index: 500; /* Below main-content so content appears above when scrolling */
+  will-change: opacity, transform;
+  pointer-events: auto; /* Enable clicks */
+  transition: background-color 0.5s ease;
+}
+
+.mobile-hero-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-hero-hidden {
+  opacity: 0;
+  transform: translateY(-50px);
+  pointer-events: none;
+  display: none; /* Completely remove from DOM when hidden */
+}
+
+.mobile-hero-content {
+  height: 100%;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.mobile-hero-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Name and Title Styling - Match sidebar */
+.mobile-hero-name {
+  font-size: clamp(3.5rem, 12vw, 5rem);
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 0.25rem 0;
+  line-height: 0.9;
+  font-family: 'Inter', sans-serif;
+  transition: color 0.5s ease;
+}
+
+.mobile-hero-title {
+  font-size: clamp(1.75rem, 5.5vw, 2.5rem);
+  font-weight: 600;
+  margin: 0;
+  line-height: 1;
+  white-space: nowrap;
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
+  color: var(--text-secondary);
+  transition: color 0.5s ease;
+}
+
+.mobile-hero-location {
+  font-size: clamp(1.75rem, 5.5vw, 2.5rem);
+  font-weight: 600;
+  margin: 0.5rem 0 0 0;
+  line-height: 1;
+  white-space: nowrap;
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
+  color: var(--text-ghost);
+  transition: color 0.5s ease;
+}
+
+/* GitHub Link Styling - Match sidebar */
+.mobile-hero-github-section {
+  margin-top: 1rem;
+}
+
+.mobile-hero-github {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+}
+
+.mobile-hero-github::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--text-color);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.8s ease; /* Much slower out animation */
+}
+
+.mobile-hero-github:hover::after,
+.mobile-hero-github.hint-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.6s ease; /* Much slower in animation */
+}
+
+.mobile-hero-github:hover .mobile-github-link,
+.mobile-hero-github.hint-active .mobile-github-link {
+  color: var(--text-color);
+}
+
+.mobile-github-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  font-weight: 600;
+  color: var(--text-ghost);
+  white-space: nowrap;
+  transition: color 0.6s ease; /* Much slower color transition */
+  text-decoration: none;
+}
+
+.mobile-github-icon {
+  width: clamp(24px, 6vw, 28px);
+  height: clamp(24px, 6vw, 28px);
+  color: currentColor;
+}
+
+/* Scroll Indicator */
+.mobile-hero-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  padding: 1rem;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-hero-scroll:hover,
+.mobile-hero-scroll:active {
+  opacity: 1;
+}
+
+.mobile-hero-scroll:active {
+  transform: scale(0.95);
+}
+
+.scroll-text {
+  font-size: clamp(0.875rem, 3vw, 1rem);
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
+  color: var(--text-secondary);
+  transition: color 0.5s ease;
+}
+
+.scroll-arrow {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  color: var(--text-secondary);
+  transition: color 0.5s ease;
+  animation: arrowBounce 2s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+}
+
+/* Show only on mobile */
+@media (max-width: 768px) {
+  .mobile-hero {
+    display: block;
+  }
+}
+
+/* Entrance Animations - Match sidebar's staggered multi-directional style */
+.mobile-hero-animate-left {
+  animation: mobileHeroSlideInLeft 0.6s ease-out both;
+}
+
+.mobile-hero-animate-right {
+  animation: mobileHeroSlideInRight 0.6s ease-out both;
+}
+
+.mobile-hero-animate-bottom {
+  animation: mobileHeroSlideInBottom 0.6s ease-out both;
+}
+
+/* Staggered delays for elements */
+.mobile-hero-name {
+  animation-delay: 0.2s;
+}
+
+.mobile-hero-title {
+  animation-delay: 0.4s;
+}
+
+.mobile-hero-location {
+  animation-delay: 0.6s;
+}
+
+.mobile-hero-github {
+  animation-delay: 0.8s;
+}
+
+.mobile-hero-scroll {
+  animation-delay: 1s;
+}
+
+/* Keyframes for entrance animations */
+@keyframes mobileHeroSlideInLeft {
+  0% {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes mobileHeroSlideInRight {
+  0% {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes mobileHeroSlideInBottom {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

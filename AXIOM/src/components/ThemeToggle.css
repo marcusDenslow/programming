@@ -1,0 +1,185 @@
+.theme-toggle {
+  position: fixed;
+  top: clamp(1.5rem, 3vw, 2rem);
+  right: clamp(1.5rem, 3vw, 2rem);
+  width: clamp(44px, 6vw, 48px);
+  height: clamp(44px, 6vw, 48px);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: clamp(0.375rem, 1vw, 0.5rem);
+  z-index: 10003;
+  pointer-events: auto;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Entry animation */
+  animation: slideInDown 0.8s ease-out;
+  transform-origin: top;
+
+  /* Color variables */
+  --icon-fill: var(--text-color);
+  --icon-fill-hover: var(--text-secondary);
+
+  transition: top 0.3s ease, right 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+/* Theme toggle in menu - dark mode (menu is white, icon is black) */
+[data-theme="dark"] .theme-toggle.menu-open .sun-and-moon > :is(.moon, .sun) {
+  fill: #000000 !important;
+}
+
+[data-theme="dark"] .theme-toggle.menu-open .sun-and-moon > .sun-beams {
+  stroke: #000000 !important;
+}
+
+/* Theme toggle in menu - light mode (menu is black, icon is off-white) */
+[data-theme="light"] .theme-toggle.menu-open .sun-and-moon > :is(.moon, .sun) {
+  fill: #faf9f6 !important;
+}
+
+[data-theme="light"] .theme-toggle.menu-open .sun-and-moon > .sun-beams {
+  stroke: #faf9f6 !important;
+}
+
+/* Invert theme toggle color when first menu item is hovered */
+body:has(.menu-item:first-child.hovered) .theme-toggle.menu-open .sun-and-moon > :is(.moon, .sun) {
+  fill: var(--text-color) !important;
+  transition: fill 0.5s ease-out 0.15s !important;
+}
+
+body:has(.menu-item:first-child.hovered) .theme-toggle.menu-open .sun-and-moon > .sun-beams {
+  stroke: var(--text-color) !important;
+  transition: stroke 0.5s ease-out 0.15s !important;
+}
+
+@keyframes slideInDown {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.theme-toggle {
+  transition: all 0.2s ease-out;
+}
+
+.theme-toggle svg,
+.theme-toggle .sun-and-moon > * {
+  transition: fill 0.5s ease, stroke 0.5s ease, color 0.5s ease;
+  transition-delay: 0s;
+}
+
+.theme-toggle:hover {
+  background-color: var(--bg-secondary);
+  transform: scale(1.05);
+}
+
+.sun-and-moon > :is(.moon, .sun, .sun-beams) {
+  transform-origin: center;
+}
+
+.sun-and-moon > :is(.moon, .sun) {
+  fill: var(--icon-fill);
+  transition: fill 0.5s ease-out;
+  transition-delay: 0s;
+}
+
+.theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) {
+  fill: var(--icon-fill-hover);
+}
+
+.sun-and-moon > .sun-beams {
+  stroke: var(--icon-fill);
+  stroke-width: 2px;
+  transition: stroke 0.5s ease-out;
+  transition-delay: 0s;
+}
+
+.theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams {
+  stroke: var(--icon-fill-hover);
+}
+
+[data-theme="dark"] .sun-and-moon > .sun {
+  transform: scale(1.75);
+}
+
+[data-theme="dark"] .sun-and-moon > .sun-beams {
+  opacity: 0;
+}
+
+[data-theme="dark"] .sun-and-moon > .moon > circle {
+  transform: translateX(-7px);
+}
+
+@supports (cx: 1) {
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
+    cx: 17;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sun-and-moon > .sun {
+    transition: transform .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .sun-and-moon > .sun-beams {
+    transition: transform .5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity .5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .sun-and-moon .moon > circle {
+    transition: transform .25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  @supports (cx: 1) {
+    .sun-and-moon .moon > circle {
+      transition: cx .25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+  }
+
+  [data-theme="dark"] .sun-and-moon > .sun {
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-duration: .25s;
+    transform: scale(1.75);
+  }
+
+  [data-theme="dark"] .sun-and-moon > .sun-beams {
+    transition-duration: .15s;
+    transform: rotateZ(-25deg);
+  }
+
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
+    transition-duration: .5s;
+    transition-delay: .25s;
+  }
+}
+
+/* Focus styles for accessibility */
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
+}
+
+/* Mobile adjustments - position to left of hamburger menu */
+@media (max-width: 768px) {
+  .theme-toggle {
+    right: clamp(8rem, 15vw, 10rem);
+    left: auto;
+    top: clamp(1.5rem, 3vw, 2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    top: clamp(1.5rem, 3vw, 2rem);
+    right: clamp(5rem, 12vw, 5.5rem);
+    left: auto;
+  }
+}

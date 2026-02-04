@@ -1,0 +1,3 @@
+/home/bolla/programming/c++/sdl/build/CMakeFiles/main.dir
+/home/bolla/programming/c++/sdl/build/CMakeFiles/edit_cache.dir
+/home/bolla/programming/c++/sdl/build/CMakeFiles/rebuild_cache.dir

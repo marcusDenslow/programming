@@ -1,0 +1,24 @@
+= Building Nyra on a Normal System
+
+. Enter the Nix development environment:
++
+[source,shell]
+----
+nix develop
+----
+
+. Build the project (release mode):
++
+[source,shell]
+----
+cargo b -r
+----
+
+. Run the project (release mode):
++
+[source,shell]
+----
+cargo r -r
+----
+
+To run in non-release mode (debug mode), remote the appended argument "-r" in the listed commands. 

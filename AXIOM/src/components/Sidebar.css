@@ -1,0 +1,238 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 430px;
+  height: 100vh;
+  background-color: var(--bg-color);
+  transition: background-color 0.5s ease, width 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: var(--border-color);
+  opacity: 0.5;
+  transition: background-color 0.5s ease;
+}
+
+.sidebar-content {
+  height: 100%;
+  padding: 0 clamp(3rem, 5vw, 4rem);
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  place-items: start;
+  position: relative;
+  transition: padding 0.3s ease;
+}
+
+.secret-hint {
+  position: absolute;
+  top: 2rem;
+  left: 4rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  opacity: 0.35;
+  cursor: help;
+  font-style: normal;
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
+  transition: opacity 0.3s ease, color 0.5s ease;
+}
+
+.secret-hint:hover {
+  opacity: 0.7;
+  color: var(--text-color);
+}
+
+.sidebar-section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Name Section - Exactly like yolocat's */
+.sidebar-name {
+}
+
+.sidebar-title {
+  font-size: clamp(2.5rem, 5vw + 1rem, 3.75rem); /* Fluid 40px-60px */
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 0.125rem 0;
+  line-height: 0.9;
+  font-family: 'Inter', sans-serif;
+  transition: color 0.5s ease, font-size 0.3s ease;
+}
+
+.sidebar-subtitle {
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.875rem); /* Fluid 20px-30px */
+  font-weight: 600;
+  margin: 0;
+  line-height: 1;
+  white-space: nowrap;
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
+  transition: color 0.5s ease, font-size 0.3s ease;
+}
+
+.sidebar-subtitle:not(.secondary) {
+  color: var(--text-secondary); /* text-slate-500 equivalent */
+}
+
+.sidebar-subtitle.secondary {
+  color: var(--text-ghost); /* text-slate-700 equivalent */
+}
+
+/* Navigation Section */
+.sidebar-navigation {
+  gap: 0;
+  align-items: flex-start;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.875rem); /* Fluid 20px-30px */
+  font-weight: 600;
+  color: var(--text-ghost);
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
+  transition: color 0.1s ease, font-size 0.3s ease;
+  text-align: left;
+  display: block;
+  line-height: 1.2;
+  position: relative;
+}
+
+.nav-spacer {
+  width: 2ch;
+  height: 1px;
+  display: inline-block;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; /* small gap */
+  left: 0;
+  width: 100%;
+  height: 4px; /* 2x thicker (was 2px) */
+  background-color: var(--text-color);
+  transform: scaleX(0);
+  transform-origin: right; /* Default: eaten from left when unhovered */
+  transition: transform 0.3s ease; /* 2x longer out (0.15 * 2) */
+}
+
+.nav-link:hover {
+  color: var(--text-secondary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left; /* Fill from left when hovered */
+  transition: transform 0.26s ease; /* 2x longer in (0.13 * 2) */
+}
+
+.nav-link.active {
+  color: var(--text-color);
+}
+
+/* External Links Section */
+.sidebar-external {
+  justify-content: center;
+}
+
+.external-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+}
+
+.external-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; /* small gap */
+  left: 0;
+  width: 100%;
+  height: 4px; /* 2x thicker (was 2px) */
+  background-color: var(--text-color);
+  transform: scaleX(0);
+  transform-origin: right; /* Default: eaten from left when unhovered */
+  transition: transform 0.3s ease; /* 2x longer out (0.15 * 2) */
+}
+
+.external-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left; /* Fill from left when hovered */
+  transition: transform 0.26s ease; /* 2x longer in (0.13 * 2) */
+}
+
+.external-link:hover .github-link {
+  color: var(--text-color);
+}
+
+.github-link {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 1rem;
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 600; /* font-semibold */
+  color: var(--text-ghost);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.github-icon {
+  width: 32px;
+  height: 32px;
+  color: currentColor;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: clamp(320px, 35vw, 350px);
+  }
+
+  .sidebar-content {
+    padding: 0 clamp(2.5rem, 4vw, 3rem);
+  }
+
+  .github-icon {
+    width: clamp(24px, 3vw, 28px);
+    height: clamp(24px, 3vw, 28px);
+  }
+}
+
+/* Medium tablets */
+@media (max-width: 900px) {
+  .sidebar-content {
+    padding: 0 clamp(2rem, 3.5vw, 2.5rem);
+  }
+
+  .github-link {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Sidebar animations are now controlled by Homepage.css */

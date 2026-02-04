@@ -1,0 +1,17 @@
+= Troubleshooting build failures
+
+If the build fails, here are some common issues and solutions.
+
+=== Error: "No BOT_PREFIX variable found in the ENV" or "No DISCORD_TOKEN variable found in the ENV"
+
+These errors indicate Nyra cannot find required environment variables.  
+
+Solution: Copy the example configuration file and fill in the required values:
+[source,shell]
+----
+# Not for Windows
+cp nyra.example.toml ~/.config/nyra/nyra.toml
+
+# For Windows
+cp nyra.example.toml %LOCALAPPDATA%/nyra/nyra.toml
+----
